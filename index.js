@@ -85,12 +85,6 @@ app.post("/new", function(req, res){
 
 app.put('/done/:id', function(req, res) {
   var rowToEdit = req.params.id;
-
-  console.log(req.body, "***********");
-  var thing = Object.keys(req.body);
-  console.log(thing,"the key")
-
-  // Edit team here
   // Specify updated cell values
   var row = [
     {
@@ -98,9 +92,7 @@ app.put('/done/:id', function(req, res) {
       "cells": [
         {
           "columnId": 685622013781892,
-          value: true //this will make everything checked
-          // value: Object.keys(JSON.parse(req.body))
-          // "value": Object.keys(req.body[0].toString())
+          value: JSON.parse(req.body.checked)
         }
       ]
     }
@@ -115,12 +107,13 @@ app.put('/done/:id', function(req, res) {
   // Update rows in sheet
   smartsheet.sheets.updateRow(options)
     .then(function(updatedRows) {
-      console.log(updatedRows, "^^^^^^^^^^^^^^^");
+      // console.log(updatedRows);
+      res.send({message: 'success'});
     })
     .catch(function(error) {
-      console.log(error);
+      // console.log(error);
+      res.send({message: 'failure'});
     });
-  res.send({message: 'success'});
 });
 
 //server
