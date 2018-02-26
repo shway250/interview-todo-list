@@ -1,1 +1,41 @@
-<h1>This worked!</h1>
+<div class="container">
+  <!-- grabbin colum info -->
+  <% sheetInfo.columns.forEach(column =>{ %>
+    <% if(column.title == "Task Name"){ %>
+      <div class="column-main main">
+        <%= column.title %>
+      </div>
+    <% }else{ %>
+      <div class="column-cat main">
+        <%= column.title %>
+      </div>
+    <% } %>
+  <% }); %>
+  <hr style="border-width:3px;border-style: solid;">
+  <!-- Grabbing individual row info -->
+  <% sheetInfo.rows.forEach(row => { %>
+    <% row.cells.forEach((row, index) =>{ %>
+      <% if(index == 0){ %>
+        <div class="column-main">
+          <%= row.value %>
+        </div>
+      <% }else{%>
+        <div class="column-cat">
+          <%= row.value %>
+        </div>
+      <% } %>
+    <% }); %>
+    <hr>
+  <% }); %>
+  <!-- Form for making new tdo item -->
+  <form method="POST" action="/new">
+    <label for="animalType">Type</label>
+    <input type="text" name="type">
+
+    <label for="animalName">Name</label>
+    <input id="animalName" type="text" name="name">
+
+    <input id="animalType" type="submit">
+  </form>
+
+</div>

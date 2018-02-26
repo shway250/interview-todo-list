@@ -16,36 +16,24 @@ var smartsheet = client.createClient({ accessToken: process.env.ACCESS_TOKEN });
 
 //routes
 app.get('/', function(req, res) {
-  // var qs = {
-  //   Authorization: 'Bearer '
-  // };
-  // request({
-  //   url:'https://api.smartsheet.com/2.0/sheets',
-  //   qs:qs
-  // }, function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     console.log(body) //Show JSON Object.
-  //     res.send(body);
-  //     // res.render('index', {name: ""});
-  //   }else{
-  //     console.log(error);
-  //   }
-  // });
-
   var options = {
-    id: 3326421302044548 // Id of Sheet
+    id: 5552382592477060 // Id of Sheet
   };
-
   // Get sheet
   smartsheet.sheets.getSheet(options)
-      .then(function(sheetInfo) {
-          console.log(sheetInfo);
-          res.send(sheetInfo)
-      })
-      .catch(function(error) {
-          console.log(error);
-      });
+  .then(function(sheetInfo) {
+      console.log(sheetInfo);
+      // res.send(sheetInfo)
+      res.render('index', {sheetInfo:sheetInfo});
+  })
+  .catch(function(error) {
+      console.log(error);
   });
+});
+
+app.post("/new", function(req, res){
+  
+});
 
 //server
 app.listen(3000);
