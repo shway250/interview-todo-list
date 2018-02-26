@@ -14,10 +14,23 @@
   <hr style="border-width:3px;border-style: solid;">
   <!-- Grabbing individual row info -->
   <% sheetInfo.rows.forEach(row => { %>
+    <% var rowID = row.id %>
     <% row.cells.forEach((row, index) =>{ %>
       <% if(index == 0){ %>
         <div class="column-main">
           <%= row.value %>
+        </div>
+      <%} else if(row.columnId === 685622013781892){ %>
+        <div class="column-cat">
+          <% if(row.value === false){ %>
+            <div class="column-cat">
+              <input type="checkbox" name="done" data-url="/done/<%= rowID %>" onchange="handleChange(this);">
+            </div>
+          <% }else{ %>
+            <div class="column-cat">
+              <input type="checkbox" name="done" data-url="/done/<%= rowID %>" onchange="handleChange(this);" checked>
+            </div>
+          <% } %>
         </div>
       <% }else{%>
         <div class="column-cat">
@@ -29,13 +42,25 @@
   <% }); %>
   <!-- Form for making new tdo item -->
   <form method="POST" action="/new">
-    <label for="animalType">Type</label>
+    <label for="Task Name">Task Name</label>
     <input type="text" name="type">
 
-    <label for="animalName">Name</label>
-    <input id="animalName" type="text" name="name">
+    <label for="Due Date">Due Date</label>
+    <input id="dueDate" type="date" name="date">
 
-    <input id="animalType" type="submit">
+    <input type='hidden' value='false' name='done'>
+
+    <label for="Tag">Tag</label>
+    <select name="tag">
+      <option value="Work">Work</option>
+      <option value="Home">Home</option>
+      <option value="Volunteering">Volunteering</option>
+      <option value="Kid's-Stuff">Kid's Stuff</option>
+      <option value="Reminder">Reminder</option>
+      <option value="Misc.">Misc</option>
+    </select>
+
+    <input id="newTodo" type="submit">
   </form>
 
 </div>
