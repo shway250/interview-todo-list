@@ -35,6 +35,25 @@
             </div>
           <% } %>
         </div>
+      <%} else if(index === 3){ %>
+        <div class="column-cat <%= rowID %>">
+          <select class="<%= rowID %>" name="status">
+            <option value="Not Started"<%= row.value=="Not Started"?"selected":''%>>Not Started</option>
+            <option value="In Progress"<%= row.value=="In Progress"?"selected":''%>>In Progress</option>
+            <option value="Complete"<%= row.value=="Complete"?"selected":''%>>Complete</option>
+          </select>
+        </div>
+      <%} else if(index === 4){ %>
+        <div class="column-cat <%= rowID %>">
+          <select class="<%= rowID %>" name="tag">
+            <option value="Work"<%= row.value=="Work"?"selected":''%>>Work</option>
+            <option value="Home"<%= row.value=="Home"?"selected":''%>>Home</option>
+            <option value="Volunteering"<%= row.value=="Volunteering"?"selected":''%>>Volunteering</option>
+            <option value="Kid's-Stuff"<%= row.value=="Kid's-Stuff"?"selected":''%>>Kid's Stuff</option>
+            <option value="Reminder"<%= row.value=="Reminder"?"selected":''%>>Reminder</option>
+            <option value="Misc."<%= row.value=="Misc."?"selected":''%>>Misc</option>
+          </select>
+        </div>
       <% }else{%>
         <div class="column-cat <%= rowID %>">
           <%= row.value %>
