@@ -18,3 +18,14 @@ body{
   font-weight: bold;
   font-size: 1.2em;
 }
+.completed{
+  text-decoration: line-through;
+  font-style : italic;
+}
+.big-X{
+  font-family: impact;
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+}

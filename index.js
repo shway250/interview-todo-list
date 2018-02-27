@@ -116,5 +116,26 @@ app.put('/done/:id', function(req, res) {
     });
 });
 
+app.delete('/delete/:id', function(req, res) {
+  var taskToDelete = req.params.id;
+
+  // Set options
+var options = {
+  sheetId: toDoListSheetId,
+  rowId: taskToDelete
+};
+
+// Delete row
+smartsheet.sheets.deleteRow(options)
+  .then(function(results) {
+    console.log(results);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+  
+  res.send({message: 'success'});
+});
+
 //server
 app.listen(3000);

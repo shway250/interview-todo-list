@@ -11,34 +11,40 @@
       </div>
     <% } %>
   <% }); %>
+  <div class="column-cat main">
+    Delete
+  </div>
   <hr style="border-width:3px;border-style: solid;">
   <!-- Grabbing individual row info -->
   <% sheetInfo.rows.forEach(row => { %>
     <% var rowID = row.id %>
     <% row.cells.forEach((row, index) =>{ %>
       <% if(index == 0){ %>
-        <div class="column-main">
+        <div class="column-main <%= rowID %>">
           <%= row.value %>
         </div>
       <%} else if(row.columnId === 685622013781892){ %>
         <div class="column-cat">
           <% if(row.value === false){ %>
-            <div class="column-cat">
+            <div class="column-cat <%= rowID %>">
               <input type="checkbox" name="done" data-url="/done/<%= rowID %>" onchange="handleChange(this);">
             </div>
           <% }else{ %>
-            <div class="column-cat">
+            <div class="column-cat <%= rowID %>">
               <input type="checkbox" name="done" data-url="/done/<%= rowID %>" onchange="handleChange(this);" checked>
             </div>
           <% } %>
         </div>
       <% }else{%>
-        <div class="column-cat">
+        <div class="column-cat <%= rowID %>">
           <%= row.value %>
         </div>
       <% } %>
     <% }); %>
-    <hr>
+    <div class="column-cat <%= rowID %>">
+      <a class="big-X <%= rowID %>" href="/delete/<%= rowID %>">X</a>
+    </div>
+    <hr class="<%= rowID %>">
   <% }); %>
   <!-- Form for making new tdo item -->
   <form method="POST" action="/new">
