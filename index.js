@@ -133,8 +133,39 @@ smartsheet.sheets.deleteRow(options)
   .catch(function(error) {
     console.log(error);
   });
-  
+
   res.send({message: 'success'});
+});
+
+app.put('/edittext/:id', function(req, res) {
+  var rowToEdit = req.params.id;
+  // Specify updated cell values
+  var row = [
+    {
+      "id": rowToEdit,
+      "cells": [
+        {
+          "columnId": 3500371780888452,
+          value: req.body.newTask
+        }
+      ]
+    }
+  ];
+
+  // Set options
+  var options = {
+    sheetId: toDoListSheetId,
+    body: row
+  };
+
+  // Update rows in sheet
+  smartsheet.sheets.updateRow(options)
+    .then(function(updatedRows) {
+      res.send({message: 'success'});
+    })
+    .catch(function(error) {
+      res.send({message: 'failure'});
+    });
 });
 
 //server

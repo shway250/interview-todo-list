@@ -21,7 +21,7 @@
     <% row.cells.forEach((row, index) =>{ %>
       <% if(index == 0){ %>
         <div class="column-main <%= rowID %>">
-          <%= row.value %>
+          <p data-row="<%= rowID %>" data-editable><%= row.value %></p>
         </div>
       <%} else if(row.columnId === 685622013781892){ %>
         <div class="column-cat">
