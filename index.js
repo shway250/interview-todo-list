@@ -190,7 +190,6 @@ app.put('/updatecat/:id', function(req, res) {
   // Update rows in sheet
   smartsheet.sheets.updateRow(options)
     .then(function(updatedRows) {
-      console.log(updatedRows);
       res.send({message: 'success'});
     })
     .catch(function(error) {
@@ -222,7 +221,6 @@ app.put('/updatestat/:id', function(req, res) {
   // Update rows in sheet
   smartsheet.sheets.updateRow(options)
     .then(function(updatedRows) {
-      console.log(updatedRows);
       res.send({message: 'success'});
     })
     .catch(function(error) {
