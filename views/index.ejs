@@ -14,7 +14,7 @@
   <div class="column-cat main">
     Delete
   </div>
-  <hr style="border-width:3px;border-style: solid;">
+  <hr class="thick-line">
   <!-- Grabbing individual row info -->
   <% sheetInfo.rows.forEach(row => { %>
     <% var rowID = row.id %>
@@ -37,7 +37,9 @@
         </div>
       <%} else if(index === 3){ %>
         <div class="column-cat <%= rowID %>">
-          <select class="<%= rowID %>" name="status">
+          <select class="<%= rowID %>" 
+                  name="status"
+                  onchange="updateStatus(this.value, '/updatestat/<%= rowID %>')">
             <option value="Not Started"<%= row.value=="Not Started"?"selected":''%>>Not Started</option>
             <option value="In Progress"<%= row.value=="In Progress"?"selected":''%>>In Progress</option>
             <option value="Complete"<%= row.value=="Complete"?"selected":''%>>Complete</option>
@@ -45,7 +47,9 @@
         </div>
       <%} else if(index === 4){ %>
         <div class="column-cat <%= rowID %>">
-          <select class="<%= rowID %>" name="tag">
+          <select class="<%= rowID %>" 
+                  name="category" 
+                  onchange="updateCategory(this.value, '/updatecat/<%= rowID %>')">
             <option value="Work"<%= row.value=="Work"?"selected":''%>>Work</option>
             <option value="Home"<%= row.value=="Home"?"selected":''%>>Home</option>
             <option value="Volunteering"<%= row.value=="Volunteering"?"selected":''%>>Volunteering</option>

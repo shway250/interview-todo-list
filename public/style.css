@@ -33,3 +33,12 @@ p{
   font-size: 20px;
   margin-left: 20px;
 }
+.thick-line{
+  border-width:3px;
+  border-style: solid;
+}
+.header{
+  background:green; 
+  width: 100%; 
+  height: 50px;
+}

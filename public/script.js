@@ -8,7 +8,6 @@ function handleChange(checkbox){
       url: rowUrl,
       data: {"checked": true}
     }).done(function(data) {
-      // console.log(data, checkbox);
       $("."+rowID).addClass("completed");
     });
   }else{
@@ -58,3 +57,25 @@ $('body').on('click', '[data-editable]', function(){
   };
   $input.one('blur', save).focus();  
 });
+
+//update category
+function updateCategory(category, url){
+  $.ajax({
+      method: 'PUT',
+      url: url,
+      data: {"newCat": category}
+    }).done(function(data) {
+      //add actions here later if need be
+    });
+}
+
+//update status
+function updateStatus(status, url){
+  $.ajax({
+      method: 'PUT',
+      url: url,
+      data: {"newStat": status}
+    }).done(function(data) {
+      //add actions here later if need be
+    });
+}

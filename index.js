@@ -27,12 +27,10 @@ app.get('/', function(req, res) {
 
   smartsheet.sheets.getSheet(options)
   .then(function(sheetInfo) {
-      // console.log(sheetInfo);//this is working
-      // res.send(sheetInfo)
-      res.render('index', {sheetInfo:sheetInfo});
+    res.render('index', {sheetInfo:sheetInfo});
   })
   .catch(function(error) {
-      console.log(error, "$%#$%#%$%#%");
+      console.log(error);
   });
 });
 
@@ -75,11 +73,11 @@ app.post("/new", function(req, res){
   // Add rows to sheet
   smartsheet.sheets.addRows(options)
     .then(function(newRows) {
-      console.log(newRows,"new rows!!!!!!!!");
+      console.log(newRows);
       res.redirect('/');
     })
     .catch(function(error) {
-      console.log(error,"error erroe ereooer");
+      console.log(error);
     });
 });
 
@@ -168,5 +166,68 @@ app.put('/edittext/:id', function(req, res) {
     });
 });
 
+app.put('/updatecat/:id', function(req, res) {
+  var rowToEdit = req.params.id;
+  // Specify updated cell values
+  var row = [
+    {
+      "id": rowToEdit,
+      "cells": [
+        {
+          "columnId": 7441021454837636,
+          value: req.body.newCat
+        }
+      ]
+    }
+  ];
+
+  // Set options
+  var options = {
+    sheetId: toDoListSheetId,
+    body: row
+  };
+
+  // Update rows in sheet
+  smartsheet.sheets.updateRow(options)
+    .then(function(updatedRows) {
+      console.log(updatedRows);
+      res.send({message: 'success'});
+    })
+    .catch(function(error) {
+      res.send({message: 'failure'});
+    });
+});
+
+app.put('/updatestat/:id', function(req, res) {
+  var rowToEdit = req.params.id;
+  // Specify updated cell values
+  var row = [
+    {
+      "id": rowToEdit,
+      "cells": [
+        {
+          "columnId": 2937421827467140,
+          value: req.body.newStat
+        }
+      ]
+    }
+  ];
+
+  // Set options
+  var options = {
+    sheetId: toDoListSheetId,
+    body: row
+  };
+
+  // Update rows in sheet
+  smartsheet.sheets.updateRow(options)
+    .then(function(updatedRows) {
+      console.log(updatedRows);
+      res.send({message: 'success'});
+    })
+    .catch(function(error) {
+      res.send({message: 'failure'});
+    });
+});
 //server
 app.listen(3000);
